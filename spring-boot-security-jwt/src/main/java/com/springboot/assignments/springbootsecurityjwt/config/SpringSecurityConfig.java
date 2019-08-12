@@ -20,25 +20,19 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("ADMIN");
-		// auth.jdbcAuthentication().dataSource(dataSource);
+		//auth.inMemoryAuthentication().withUser("admin").password("{noop}admin").roles("ADMIN");
+		auth.jdbcAuthentication().dataSource(dataSource);
 	}
 
 	@Override
-	protected void configure(HttpSecurity httpSecurity) throws Exception {
-
-		/*
-		 * httpSecurity.authorizeRequests().antMatchers("/console/**").permitAll();
-		 * 
-		 * httpSecurity.csrf().disable();
-		 * httpSecurity.headers().frameOptions().disable();
-		 */
-		httpSecurity.authorizeRequests()
-        .antMatchers("/h2-console/**").permitAll()//allow h2 console access
-        .anyRequest().authenticated()//all other urls can be access by any authenticated role
-        .and().csrf().ignoringAntMatchers("/h2-console/**")//don't apply CSRF protection to /h2-console
-        .and().headers().frameOptions().sameOrigin();
-
+	protected void configure(HttpSecurity http) throws Exception {
+		//super.configure(http);
+		http.authorizeRequests()
+		.antMatchers("/").permitAll()
+		.antMatchers("/hello-world").hasRole("MANAGER")
+		.and().formLogin().loginProcessingUrl("/authenticateTheUser").permitAll()
+		.and().logout().logoutSuccessUrl("/login").permitAll();
 	}
-
+	
+	
 }
