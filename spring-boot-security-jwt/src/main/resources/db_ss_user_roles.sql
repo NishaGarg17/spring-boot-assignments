@@ -22,10 +22,12 @@ insert into `users` values('Anil','{noop}manager',1);
 insert into `users` values('Nisha','{noop}employee',1);
 
 
-insert into `authorities` values('John','ADMIN');
-insert into `authorities` values('Anil','MANAGER');
-insert into `authorities` values('Nisha','EMPLOYEE');
+insert into `authorities` values('John','ROLE_ADMIN');
+insert into `authorities` values('Anil','ROLE_MANAGER');
+insert into `authorities` values('Nisha','ROLE_EMPLOYEE');
 
 
 select * from `users`;
 select * from `authorities`;
+
+delete from `authorities` where username ='Anil'
