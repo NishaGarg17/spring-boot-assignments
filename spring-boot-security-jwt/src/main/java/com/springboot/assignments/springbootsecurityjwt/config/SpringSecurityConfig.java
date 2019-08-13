@@ -29,10 +29,10 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		//super.configure(http);
 		http.authorizeRequests()
 		.antMatchers("/").permitAll()
-		.antMatchers("/home-page").hasAnyRole("ADMIN","MANAGER","EMPLOYEE")
+		.antMatchers("/employees").hasAnyRole("ADMIN","MANAGER","EMPLOYEE")
 		.antMatchers("/leaders").hasRole("MANAGER")
 		.antMatchers("/systems").hasRole("ADMIN")
-		.and().formLogin().loginProcessingUrl("/authenticateTheUser").permitAll()
+		.and().formLogin().loginProcessingUrl("/authenticateTheUser").defaultSuccessUrl("/employees").permitAll()
 		.and().logout().logoutSuccessUrl("/login").permitAll();
 	}
 	

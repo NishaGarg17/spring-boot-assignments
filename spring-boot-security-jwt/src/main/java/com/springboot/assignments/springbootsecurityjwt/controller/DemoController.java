@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class DemoController {
 	@GetMapping("/")
 	public String welcome() {
-		return "welcome to spring security world";
+		return "home";
 	}
-	@GetMapping("/home-page")
+	@GetMapping("/employees")
 	public String showHomePage() {
-		return "home-page";
+		return "employees";
 	}
 	
 	@GetMapping("/leaders")

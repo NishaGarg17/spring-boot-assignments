@@ -2,6 +2,7 @@
 
 <head>
 <title>Spring Boot Application</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -9,16 +10,20 @@
 	<hr />
 	<p>News!! All the Employees can participate in this new event:
 		Independence Day Celebration</p>
-		
-	Authenticated username:<div sec:authentication="name"></div>
-	Authenticated user roles:<div sec:authentication="principal.authorities"></div>
+	<hr />
+	<div sec:authentication="name"></div>
+	<div sec:authentication="principal.authorities"></div>
 
 	<br />
+	<hr />
 	<div sec:authorize="isAuthenticated()"></div>
 
 	<a sec:authorize="hasRole('MANAGER')" th:href="@{/leaders}">Leaders
 		Forum</a>
+	<br />
 	<a sec:authorize="hasRole('ADMIN')" th:href="@{/systems}">Admin
 		Forum</a>
+	<br>
+	<a class="btn btn-primary" href="/logout" th:href="@{/logout}" role="button">Log Out</a>
 </body>
 </html>
