@@ -1,15 +1,24 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<head>
-		<title>Spring Boot Application</title>
-	</head>
-	
-	<body>
-		<h4>Welcome to Thymeleaf Spring Boot Application</h4>
-		<hr />
-		<p>News!! All the Employees can participate in this new event: Independence Day Celebration</p>
-		<a th:href="@{/leaders}">Leaders Forum</a>
-		<br />
-		<a th:href="@{/systems}">Admin Forum</a>
-	</body>
+<head>
+<title>Spring Boot Application</title>
+</head>
+
+<body>
+	<h4>Welcome to Thymeleaf Spring Boot Application</h4>
+	<hr />
+	<p>News!! All the Employees can participate in this new event:
+		Independence Day Celebration</p>
+		
+	Authenticated username:<div sec:authentication="name"></div>
+	Authenticated user roles:<div sec:authentication="principal.authorities"></div>
+
+	<br />
+	<div sec:authorize="isAuthenticated()"></div>
+
+	<a sec:authorize="hasRole('MANAGER')" th:href="@{/leaders}">Leaders
+		Forum</a>
+	<a sec:authorize="hasRole('ADMIN')" th:href="@{/systems}">Admin
+		Forum</a>
+</body>
 </html>
