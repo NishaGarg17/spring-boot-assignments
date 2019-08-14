@@ -10,6 +10,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
+import com.springboot.assignments.springbootsecurityjwt.errorhandling.CustomAuthenticationFailureHandler;
+
 @Configuration
 
 @EnableWebSecurity
@@ -17,6 +19,9 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	DataSource dataSource;
+	
+	@Autowired 
+	CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -32,7 +37,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 		.antMatchers("/employees").hasAnyRole("ADMIN","MANAGER","EMPLOYEE")
 		.antMatchers("/leaders").hasRole("MANAGER")
 		.antMatchers("/systems").hasRole("ADMIN")
-		.and().formLogin().loginProcessingUrl("/authenticateTheUser").defaultSuccessUrl("/employees").permitAll()
+		.and().formLogin().loginProcessingUrl("/authenticateTheUser").defaultSuccessUrl("/employees").permitAll().failureHandler(customAuthenticationFailureHandler)
 		.and().logout().logoutSuccessUrl("/login").permitAll();
 	}
 	
