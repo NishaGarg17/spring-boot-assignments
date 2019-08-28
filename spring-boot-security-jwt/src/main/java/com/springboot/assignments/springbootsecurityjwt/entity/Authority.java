@@ -18,7 +18,7 @@ public class Authority {
 	@Column(unique=true)
 	private String name;
 	
-	@ManyToMany(mappedBy="autorities")
+	@ManyToMany(mappedBy="authorities")
 	private Set<User> users;
 
 	public String getName() {
