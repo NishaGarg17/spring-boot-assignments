@@ -18,11 +18,12 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="username",unique=true)
+	//@Column(name="username",unique=true)
+	@Column(name="username")
 	private String userName;
 	
 	@NotNull
-	@Column(unique=true)
+	//@Column(unique=true)
 	private String email;
 	
 	private String password;
