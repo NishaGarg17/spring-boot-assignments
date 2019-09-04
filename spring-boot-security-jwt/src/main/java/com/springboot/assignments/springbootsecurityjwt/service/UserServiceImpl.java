@@ -30,6 +30,7 @@ public class UserServiceImpl implements UserService{
 		HashSet<Authority> roleSet = new HashSet<Authority>();
 		roleSet.add(roleRepository.findByName("ROLE_EMPLOYEE"));
 		user.setAuthorities(roleSet);
+		user.setEnabled(true);
 		userRepository.save(user);
 		return user;
 	}

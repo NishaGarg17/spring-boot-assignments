@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class User {
@@ -18,14 +19,27 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	//@Column(name="username",unique=true)
-	@Column(name="username")
+	@NotNull
+	@Column(name="username",unique=true)
+	@Size(min=1)
+	//@Column(name="username")
 	private String userName;
 	
 	@NotNull
-	//@Column(unique=true)
+	@Size(min=1)
+	@Column(unique=true)
 	private String email;
 	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	@NotNull
+	@Size(min=5)
 	private String password;
 	
 	@Transient

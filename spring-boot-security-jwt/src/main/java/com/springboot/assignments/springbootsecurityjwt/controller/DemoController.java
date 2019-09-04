@@ -46,7 +46,7 @@ public class DemoController {
 	@PostMapping("/save-welcome-user")
 	public String saveAndAutoLoginAsEmployee(@ModelAttribute User user) {
 		userService.saveUser(user);
-		return "login";
+		return "home";
 	}
 	
 }
