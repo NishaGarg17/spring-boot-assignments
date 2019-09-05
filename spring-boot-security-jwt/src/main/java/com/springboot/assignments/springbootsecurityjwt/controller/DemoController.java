@@ -1,7 +1,10 @@
 package com.springboot.assignments.springbootsecurityjwt.controller;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -42,9 +45,14 @@ public class DemoController {
 		model.addAttribute("user", new User());
 		return "sign-up";
 	}
+	//https://spring.io/guides/gs/validating-form-input/
 	
 	@PostMapping("/save-welcome-user")
-	public String saveAndAutoLoginAsEmployee(@ModelAttribute User user) {
+	public String saveAndAutoLoginAsEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			System.out.println("**********************" + bindingResult.toString());
+			return "sign-up";
+		}
 		userService.saveUser(user);
 		return "home";
 	}

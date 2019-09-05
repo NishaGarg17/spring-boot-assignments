@@ -16,16 +16,19 @@
 			User Name
 			<span class="star">*</span>
 			<input type="text" name="User Name" th:field="*{userName}">
+			<p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">username error</p>
 			<br />
 			<br />
 			Email
 			<span class="star">*</span>
 			<input type="text" name="User Name" th:field="*{email}">
+			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</p>
 			<br />
 			<br />
 			Password
 			<span class="star">*</span>
 			<input type="text" name="Password" th:field="*{password}">
+			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
 			<br />
 			<br />
 			Confirm Password
