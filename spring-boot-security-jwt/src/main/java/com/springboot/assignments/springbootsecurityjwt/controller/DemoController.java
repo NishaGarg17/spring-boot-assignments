@@ -11,15 +11,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.springboot.assignments.springbootsecurityjwt.entity.User;
 import com.springboot.assignments.springbootsecurityjwt.service.UserService;
+import com.springboot.assignments.springbootsecurityjwt.validator.UserValidator;
 
 @Controller
 public class DemoController {
 	
 	private UserService userService;
+	private UserValidator userValidator;
 	
 	@Autowired
-	public DemoController(UserService userService) {
+	public DemoController(UserService userService, UserValidator userValidator) {
 		this.userService = userService;
+		this.userValidator = userValidator;
 	}
 	@GetMapping("/")
 	public String welcome() {
@@ -49,6 +52,7 @@ public class DemoController {
 	
 	@PostMapping("/save-welcome-user")
 	public String saveAndAutoLoginAsEmployee(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+		userValidator.validate(user, bindingResult);
 		if (bindingResult.hasErrors()) {
 			System.out.println("**********************" + bindingResult.toString());
 			return "sign-up";

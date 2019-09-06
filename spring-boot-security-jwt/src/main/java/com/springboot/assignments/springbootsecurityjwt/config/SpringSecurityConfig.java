@@ -12,7 +12,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.springboot.assignments.springbootsecurityjwt.errorhandling.CustomAuthenticationFailureHandler;
 
 @Configuration
 
@@ -21,9 +20,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	DataSource dataSource;
-	
-	@Autowired 
-	CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {

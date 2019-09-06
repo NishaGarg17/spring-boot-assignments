@@ -4,7 +4,7 @@
 		<title>Spring Boot Application</title>
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
 		<style >
-			.star {
+			.redColor {
 				color: red;
 			}
 		</style>
@@ -14,26 +14,27 @@
 		<h4>Welcome to Registration Forum</h4>
 		<form action="#" th:action="@{/save-welcome-user}" th:object="${user}" method="post">
 			User Name
-			<span class="star">*</span>
+			<span class="redColor">*</span>
 			<input type="text" name="User Name" th:field="*{userName}">
-			<p th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}">username error</p>
+			<span th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" class="redColor">username error</span>
 			<br />
 			<br />
 			Email
-			<span class="star">*</span>
+			<span class="redColor">*</span>
 			<input type="text" name="User Name" th:field="*{email}">
-			<p th:if="${#fields.hasErrors('email')}" th:errors="*{email}">email error</p>
+			<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="redColor">email error</span>
 			<br />
 			<br />
 			Password
-			<span class="star">*</span>
+			<span class="redColor">*</span>
 			<input type="text" name="Password" th:field="*{password}">
-			<p th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</p>
+			<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="redColor">Password error</span>
 			<br />
 			<br />
 			Confirm Password
-			<span class="star">*</span>
+			<span class="redColor">*</span>
 			<input type="text" name="Confirm Password" th:field="*{passwordConfirm}">
+			<span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" class="redColor">Confirm Password error</span>
 			<br />
 			<br />
 			<input class="btn btn-primary" type="submit" value="submit">
