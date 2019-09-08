@@ -5,4 +5,5 @@ import com.springboot.assignments.springbootsecurityjwt.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	public User findByUserName(String username);
+	public User findByEmail(String email);
 }

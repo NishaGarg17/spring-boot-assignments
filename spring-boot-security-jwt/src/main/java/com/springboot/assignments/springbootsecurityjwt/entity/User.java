@@ -21,12 +21,9 @@ public class User {
 	
 	@NotNull(message = "The User Name must not be null")
 	@Column(name="username",unique=true)
-	@Size(min=1, message = "User Name is Required")
-	//@Column(name="username")
 	private String userName;
 	
 	@NotNull(message = "The Email must not be null")
-	@Size(min=1, message = "Email is Required")
 	@Column(unique=true)
 	private String email;
 	
@@ -39,11 +36,9 @@ public class User {
 	}
 	
 	@NotNull(message = "The password must not be null")
-	@Size(min=5, message = "Password is Required and minimum length = 5")
 	private String password;
 	
 	@Transient
-	@Size(min=1, message = "Confirm Password is Required")
 	private String passwordConfirm;
 	
 	private Boolean enabled;

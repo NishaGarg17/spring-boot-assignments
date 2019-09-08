@@ -24,18 +24,25 @@ public class UserValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		User user = (User) target;
 		
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"userName" , "Not Empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "Not Empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "Not Empty");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "Not Empty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors,"userName" , "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "passwordConfirm", "NotEmpty");
 		System.out.println("inside UserValidator");
 		if(userService.findByUserName(user.getUserName()) != null) {
 		  System.out.println("User Already Exists"); 
-		  errors.rejectValue("userName","User Already exists"); 
-		  
+		  errors.rejectValue("userName","duplicate.user.userName"); 
+		}
+		
+		// password and confirm password must be same
+		if(!user.getPassword().equals(user.getPasswordConfirm())) {
+			errors.rejectValue("passwordConfirm", "different.user.passwordConfirm");
 		}
 		 
-		
+		//Check if Email Already in use
+		if(userService.findByEmail(user.getEmail()) != null) {
+			errors.rejectValue("email", "duplicate.user.email");
+		}
 	}
 
 }
