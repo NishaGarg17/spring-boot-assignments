@@ -8,10 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
+@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "userName", name = "uk_user_username"),
+        @UniqueConstraint(columnNames = "email", name = "uk_user_email")
+})
 @Entity
 public class User {
 	
@@ -20,11 +25,11 @@ public class User {
 	private Long id;
 	
 	@NotNull(message = "The User Name must not be null")
-	@Column(name="username",unique=true)
+//	@Column(name="username",unique=true)
 	private String userName;
 	
 	@NotNull(message = "The Email must not be null")
-	@Column(unique=true)
+//	@Column(unique=true, length  = 255)
 	private String email;
 	
 	public String getEmail() {
