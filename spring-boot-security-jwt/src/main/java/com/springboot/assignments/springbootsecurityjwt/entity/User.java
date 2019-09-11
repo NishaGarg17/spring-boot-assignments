@@ -13,10 +13,10 @@ import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotNull;
 
-@Table(uniqueConstraints = {
-        @UniqueConstraint(columnNames = "userName", name = "uk_user_username"),
-        @UniqueConstraint(columnNames = "email", name = "uk_user_email")
-})
+/*@Table(uniqueConstraints = {
+        @UniqueConstraint(columnNames = "userName(100)", name = "uk_user_username"),
+        @UniqueConstraint(columnNames = "email(100)", name = "uk_user_email")
+})*/
 @Entity
 public class User {
 	
@@ -25,11 +25,11 @@ public class User {
 	private Long id;
 	
 	@NotNull(message = "The User Name must not be null")
-//	@Column(name="username",unique=true)
+	@Column(name="username",unique=true, length = 200)
 	private String userName;
 	
 	@NotNull(message = "The Email must not be null")
-//	@Column(unique=true, length  = 255)
+	@Column(unique=true, length  = 200)
 	private String email;
 	
 	public String getEmail() {

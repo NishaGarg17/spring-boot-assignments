@@ -15,7 +15,7 @@ public class Authority {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	//@Column(unique=true)
+	@Column(unique=true, length = 32)
 	private String name;
 	
 	@ManyToMany(mappedBy="authorities")
