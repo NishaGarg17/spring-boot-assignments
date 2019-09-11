@@ -27,13 +27,13 @@
 			<br />
 			Password
 			<span class="redColor">*</span>
-			<input type="text" name="Password" th:field="*{password}">
+			<input type="password" name="Password" th:field="*{password}">
 			<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="redColor">Password error</span>
 			<br />
 			<br />
 			Confirm Password
 			<span class="redColor">*</span>
-			<input type="text" name="Confirm Password" th:field="*{passwordConfirm}">
+			<input type="password" name="Confirm Password" th:field="*{passwordConfirm}">
 			<span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}" class="redColor">Confirm Password error</span>
 			<br />
 			<br />
